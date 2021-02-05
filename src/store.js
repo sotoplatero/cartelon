@@ -1,0 +1,57 @@
+import { writable, readable  } from "svelte/store";
+
+const dark = writable(false); // dark mode
+const themes = readable([ 
+	'play',
+	'frame', 
+	'box', 
+	'quote', 
+	'modal',
+	'nowthis',
+	'yinyang',
+	'flat',
+]); // dark mode
+const fonts = readable([ 
+	'Inter',
+	'Work Sans',
+	'Space Mono',
+	'Space Grotesk',
+	'Rubik',
+	'Libre Franklin',
+	'Cormorant',
+	'Fira Sans',
+	'Chivo',
+	'Eczar',
+	'Alegreya Sans',
+	'Alegreya',
+	'Source Sans Pro',
+	'Source Serif Pro',
+	'Roboto',
+	'Roboto Slab',
+	'BioRhyme',
+	'Inknut Antiqua',
+	'Poppins',
+	'Archivo Narrow ',
+	'Libre Baskerville',
+	'Playfair Display',
+	'Karla',
+	'Lora',
+	'Proza Libre',
+	'Spectral',
+	'IBM Plex Sans',
+	'Crimson Text',
+	'Montserrat',
+	'Lato',
+	'PT Sans ',
+	'PT Serif',
+	'Cardo ',
+	'Neuton',
+	'Open Sans',
+	'Inconsolata',
+	'Cabin',
+	'Raleway', 
+	'Anonymous Pro', 
+	'Merriweather' 
+]); // dark mode
+
+export { dark, themes, fonts };

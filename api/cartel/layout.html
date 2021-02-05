@@ -1,0 +1,49 @@
+<!doctype html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    {{? it.font}}
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family={{= it.font}}">  
+    {{?}}
+    <style type="text/css">
+        html {
+            font-family: {{= it.font || 'arial' }}, sans-serif;            
+        }
+    </style>
+    <script type="text/javascript">
+        // document.addEventListener('DOMContentLoaded', (event) => {
+            let text = document.querySelector('h1')
+            do {
+                text.style.fontSize =  (parseInt(text.style.fontSize) - 1) + 'px'
+                console.log(text.offsetWidth)
+            } while (text.offsetHeight > 640 || text.offsetWidth > 1280);   
+        // })        
+    </script>
+</head>
+    <body >
+       <div 
+            id="txt2img"
+            style="
+                font-family: {{= it.font || 'arial' }}, sans-serif;
+                text-align: center;
+                display: table;
+                background-color: {{= it.bg || '#fff' }};
+                height: 640px;
+                width: 1280px;
+                color: {{= it.color || '#000'}};
+                padding: 3rem 5rem;
+        ">
+            
+            <h1 
+                style="
+                    font-size: 500px; 
+                    /*font-weight: 300;*/
+                    margin:0; 
+                    display: table-cell;
+                    vertical-align: middle; " 
+                >
+                    {{= it.text || 'Type text parameter. ?text="Hello World!!"'}}
+                </h1>
+
+        </div>   
+    </body>
+</html>
