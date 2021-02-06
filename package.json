@@ -23,26 +23,14 @@
         "tailwindcss": "^2.0.2"
     },
     "dependencies": {
-        "cheerio": "^1.0.0-rc.5",
+        "@octokit/rest": "^18.1.0",
         "chrome-aws-lambda": "^5.5.0",
         "copee": "^1.0.6",
         "dot": "^2.0.0-beta.1",
         "got": "^11.8.1",
-        "metascraper": "^5.16.13",
-        "metascraper-author": "^5.16.13",
-        "metascraper-clearbit": "^5.16.13",
-        "metascraper-date": "^5.16.13",
-        "metascraper-description": "^5.16.13",
-        "metascraper-image": "^5.16.13",
-        "metascraper-logo": "^5.16.13",
-        "metascraper-publisher": "^5.16.13",
-        "metascraper-title": "^5.16.13",
-        "metascraper-url": "^5.16.13",
         "puppeteer-core": "^5.5.0",
         "sirv-cli": "^1.0.0",
+        "uuid": "^8.3.2",
         "xss": "^1.0.8"
-    },
-    "engines": {
-        "node": "14.x"
     }
 }

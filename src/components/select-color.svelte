@@ -1,14 +1,14 @@
 <div class="w-full">
 	<select 
 		bind:value={value} 
-		class="w-full text-center" 
+		class="w-full text-center text-lg border-2 rounded" 
 		style="background-color: {bgColor};" 
 		name={name}
 	>
 		<option></option>
 		{#each colors as color}
 			<option 
-				value={color[0].replace(/#/,'%23')} 
+				value={color[0]} 
 				style="background-color: {color[0]};"
 				class="text-center"
 			>
@@ -106,6 +106,6 @@
 		['#831843','pink-900'],		
 	];
 
-	$: bgColor = colors.some(el => el[1]==value) ?  colors.find(el => el[1]==value)[0] : '#fff';
+	$: bgColor = colors.some(el => el[0]==value) ?  colors.find(el => el[0]==value)[0] : '#fff';
 
 </script>

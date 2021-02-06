@@ -1,10 +1,11 @@
 const chromium = require('chrome-aws-lambda');
-
 const localChrome = process.env.PATH_CHROME;
+
 var xss = require("xss");
 var path = require("path")
 const fs = require("fs");
-var dot = require("dot");
+const dot = require("dot");
+var save = require("./utils/save");
 
 exports.handler = async (event, context) => {
 
@@ -12,13 +13,13 @@ exports.handler = async (event, context) => {
     Object.keys(qs).forEach((key, index) => qs[key] = xss(qs[key]));
     let parameters = qs;
 
-    parameters.text = parameters.text
-        .replace(/\*\*(.+)\*\*/g,'<strong style="font-weight: 900;">$1</strong>')
-        .replace(/\*(.+)\*/g,'<em>$1</em>')
-        .replace(/\_(.+)\_/g,'<span style="text-decoration: underline;">$1</span>')
-        .replace(/\./g,'<br/>');
+    // parameters.text = parameters.text
+    //     .replace(/\*\*(.+)\*\*/g,'<strong style="font-weight: 900;">$1</strong>')
+    //     .replace(/\*(.+)\*/g,'<em>$1</em>')
+    //     .replace(/\_(.+)\_/g,'<span style="text-decoration: underline;">$1</span>')
+    //     .replace(/\./g,'<br/>');
 
-    try {
+    // try {
         
         const browser = await chromium.puppeteer.launch({
             ignoreDefaultArgs: ['--disable-extensions'],
@@ -29,7 +30,7 @@ exports.handler = async (event, context) => {
         });
         
         // Open page base
-        let tmpl = fs.readFileSync( path.resolve(__dirname, "./layout.html"), "utf8" );
+        let tmpl = fs.readFileSync( path.resolve(__dirname, "./layouts/layout.html"), "utf8" );
         const view = dot.template(tmpl);
         
         const page = await browser.newPage();
@@ -40,11 +41,14 @@ exports.handler = async (event, context) => {
             do {
                 text.style.fontSize =  (parseInt(text.style.fontSize) - 1) + 'px'
             } while (text.offsetHeight > 640 || text.offsetWidth > 1280);            
-        })
+        });
       
         const elCode = await page.$('#txt2img');
         const screenshot = await elCode.screenshot({ encoding: 'base64' });
         await browser.close();
+
+        const cartel = { ...parameters, src: screenshot }
+        await save(cartel)
 
         return {
             statusCode: 200,
@@ -52,19 +56,19 @@ exports.handler = async (event, context) => {
             	'Content-type': 'application/json', 
             	// 'Cache-Control': 'public, immutable, no-transform, s-maxage=31536000, max-age=31536000' 
             },
-            body: JSON.stringify(screenshot),   
+            body: JSON.stringify(cartel),   
             // isBase64Encoded: true            
         }     
 
-    } catch (e) {
+    // } catch (e) {
 
-        return {
-            headers: { 'Content-Type':'application/json'},            
-            statusCode: 500,
-            body: JSON.stringify({error: e}),   
-        }     
+    //     return {
+    //         headers: { 'Content-Type':'application/json'},            
+    //         statusCode: 500,
+    //         body: JSON.stringify({error: e}),   
+    //     }     
 
-    }
+    // }
     
 
 }

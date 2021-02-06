@@ -7,7 +7,7 @@
 		name="url" 
 		id="url" 
 		bind:value={value}
-		class="w-full"
+		class="w-full text-lg border-2 rounded"
 		on:focus={ e => e.target.select() }
 	>
 </div>
