@@ -103,15 +103,15 @@
         </button>        
       </div>
     </div>
-    <div><img class="h-full rounded-lg" src="/img/create_posters.png" alt="Create cards with your favorite phrases"></div>
-    <div><img class="h-full rounded-lg" src="/img/easy_and_fun.png" alt="Easy and fun"></div>
+    <div><img class="rounded-lg" src="/img/create_posters.png" alt="Create cards with your favorite phrases"></div>
+    <div><img class="rounded-lg" src="/img/easy_and_fun.png" alt="Easy and fun"></div>
 
     {#each carteles as cartel}
       <div class="relative">
 
         <img 
           loading="lazy"
-          class="lazyload h-full rounded-lg"
+          class="lazyload rounded-lg"
           src="data:image/png;base64, {cartel.src}" 
           alt="{cartel.text}">
 
