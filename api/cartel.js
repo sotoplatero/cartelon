@@ -50,7 +50,7 @@ exports.handler = async (event, context) => {
         await browser.close();
 
         const cartel = { ...parameters, src: screenshot }
-        save(cartel)
+        // save(cartel)
 
         return {
             statusCode: 200,
