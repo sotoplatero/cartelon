@@ -6,12 +6,14 @@ var path = require("path")
 const fs = require("fs");
 const dot = require("dot");
 var save = require("./utils/save");
+require("./utils/fonts");
 
 exports.handler = async (event, context) => {
 
     let qs = event.queryStringParameters;
     Object.keys(qs).forEach((key, index) => qs[key] = xss(qs[key]));
     let parameters = qs;
+    parameters.font = FONTS[Math.floor(Math.random() * FONTS.length)]
 
     // parameters.text = parameters.text
     //     .replace(/\*\*(.+)\*\*/g,'<strong style="font-weight: 900;">$1</strong>')
@@ -48,7 +50,7 @@ exports.handler = async (event, context) => {
         await browser.close();
 
         const cartel = { ...parameters, src: screenshot }
-        await save(cartel)
+        save(cartel)
 
         return {
             statusCode: 200,

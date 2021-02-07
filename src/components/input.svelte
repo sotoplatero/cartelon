@@ -1,23 +1,11 @@
-<div class="">
-	{#if label}
-		<label for="email_address" class="block text-gray-700 font-semibold">{label}</label>
-	{/if}
-	<input 
-		type="text" 
-		name="url" 
-		id="url" 
-		bind:value={value}
-		class="w-full text-lg border-2 rounded"
-		on:focus={ e => e.target.select() }
-	>
-</div>
+<textarea 
+	name="url" 
+	id="url" 
+	bind:value={value}
+	class="w-full text-xl font-semibold rounded-lg py-2 px-4 focus:outline-none h-full"
+	style="color: #{color}; background-color: #{bg}"
+></textarea>
 
 <script>
-	import { createEventDispatcher } from 'svelte';
-	const dispatch = createEventDispatcher();
-		
-	export let 
-		label = '', 
-		value, 
-		placeholder = '';
+	export let value, bg = 'fff', color = '000';
 </script>

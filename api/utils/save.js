@@ -10,6 +10,7 @@ module.exports = async function(cartel) {
     created_at: new Date,
     ...cartel,
   };
+
   console.log(process.env.GITHUB_TOKEN)
   const octokit = new Octokit({
     auth: process.env.GITHUB_TOKEN,
@@ -35,7 +36,6 @@ module.exports = async function(cartel) {
       content: fileContent,
     })
 
-  console.log(response)
-
+  // console.log(response)
 
 }

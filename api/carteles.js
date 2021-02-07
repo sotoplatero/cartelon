@@ -11,17 +11,17 @@ exports.handler = async function(event, context) {
   let {data} = await octokit.repos.getContent({
     owner: 'sotoplatero',
     repo: 'db',
-    path: 'todos.json',
+    path: 'cartelones.json',
   });
 
-  let todos = Buffer.from(data.content, 'base64').toString('utf8') 
+  let cartelones = Buffer.from(data.content, 'base64').toString('utf8') 
 
   return {
     headers: { 
         'Content-Type':'application/json' , 
     },    
     statusCode: 200,
-    body: todos
+    body: cartelones
   }     
 
 }
