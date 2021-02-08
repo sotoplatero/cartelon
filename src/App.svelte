@@ -46,8 +46,8 @@
   </div>
   
   <main id="builder" class="w-11/12 mx-auto ">
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg: gap-2">
-      <div class="flex flex-col justify-between bg-white p-3 rounded-lg border-4 border-red-700">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
+      <div class="flex flex-col justify-between items-stretch bg-white p-3 rounded-lg border-4 border-red-700">
         <InputText 
           bind:value={text} 
           {color} {bg}
@@ -104,21 +104,29 @@
           </button>        
         </div>
       </div>
-      <div><img class="rounded-lg" src="/img/create_posters.png" alt="Create cards with your favorite phrases"></div>
-      <div><img class="rounded-lg" src="/img/easy_and_fun.png" alt="Easy and fun"></div>
+      <div>
+        <div class="relative">
+          <img class="rounded-lg" src="/img/create_posters.png" alt="Create cards with your favorite phrases">
+        </div>
+      </div>
+      <div>
+        <div>
+          <img class="rounded-lg" src="/img/easy_and_fun.png" alt="Easy and fun">
+        </div>
+      </div>
   
       {#each carteles as cartel}
         <div class="relative">
   
           <img 
             loading="lazy"
-            class="lazyload rounded-lg"
+            class="lazyload rounded-lg h-auto"
             src="data:image/png;base64, {cartel.src}" 
             alt="{cartel.text}">
   
-          <div class="absolute bottom-0 right-0 ">
+          <div class="absolute top-0 right-0 p-2">
             <a href="data:image/png;base64, {cartel.src}" download="{cartel.text}.png">
-              <svg class="h-5 w-5 mb-2 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
               </svg>            
             </a>
